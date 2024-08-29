@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package stream.v1;
+
+option go_package = "github.com/serbanmarti/go-grpc/proto_gen/stream/v1;streamv1";
+
+service StreamService {
+  rpc UploadFile(stream UploadFileRequest) returns (UploadFileResponse) {}
+  rpc DirectMessage(stream DirectMessageRequest) returns (stream DirectMessageResponse) {}
+}
+
+message UploadFileRequest {
+  string file_name = 1;
+  bytes chunk = 2;
+}
+
+message UploadFileResponse {
+  string file_name = 1;
+  uint32 size = 2;
+}
+
+message DirectMessageRequest {
+  string message = 1;
+}
+
+message DirectMessageResponse {
+  string message = 1;
+}
